@@ -9,3 +9,17 @@ jobs:
     - uses: actions/setup-node@v1
     - run: npm install
     - run: npm test
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Docker image
+      run: |
+        docker build -t my-app:latest .
